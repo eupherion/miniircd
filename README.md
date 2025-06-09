@@ -156,3 +156,4 @@ This fork includes the following modifications from the original miniircd:
 - Minor code fixes and improvements
 - Automatically inserts the server creation date into MOTD
 - Added `run.ircd.sh` script to run server with params
+- Added folder `chans` and `chlog` creation by startup script for channel state and channel logs 
