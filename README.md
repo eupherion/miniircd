@@ -130,7 +130,6 @@ Primary author
 
 - Joel Rosdahl <joel@rosdahl.net>
 
-
 Contributors
 ------------
 
@@ -148,3 +147,12 @@ Contributors
 - Matt Behrens
 - Michael Rene Wilcox
 - Ron Fritz
+
+Changes in this fork
+--------------------
+This fork includes the following modifications from the original miniircd:
+
+- Added timestamp logging to channel logs
+- Minor code fixes and improvements
+- Automatically inserts the server creation date into MOTD
+- Added `run.ircd.sh` script to run server with params

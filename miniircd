@@ -38,6 +38,8 @@ Socket = socket.socket
 
 VERSION = "2.3"
 
+SERVER_CREATED = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
+
 
 class Channel:
     def __init__(self, server: "Server", name: bytes) -> None:
@@ -75,7 +77,7 @@ class Channel:
         return self._key
 
     @key.setter
-    def key(self, value: bytes) -> None:
+    def key(self, value: Optional[bytes]) -> None:
         self._key = value
         self._write_state()
 
@@ -243,7 +245,8 @@ class Client:
                 % (self.nickname, server.name, VERSION.encode())
             )
             self.reply(
-                b"003 %s :This server was created sometime" % self.nickname
+                b"003 %s :This server was created %s" %
+                (self.nickname, SERVER_CREATED.encode("utf-8"))
             )
             self.reply(
                 b"004 %s %s miniircd-%s o o"
@@ -826,12 +829,12 @@ class Server:
             args.ssl_cert_file = args.ssl_cert_file.resolve()
         if args.ssl_key_file and args.ssl_key_file.exists():
             args.ssl_key_file = args.ssl_key_file.resolve()
-        # else: might exist in the chroot jail, so just continue
-
         if args.listen and self.ipv6:
-            self.address = socket.getaddrinfo(
+            # Получаем адрес как строку
+            addr_info = socket.getaddrinfo(
                 args.listen, None, proto=socket.IPPROTO_TCP
-            )[0][4][0]
+                )
+            self.address = str(addr_info[0][4][0])
         elif args.listen:
             self.address = socket.gethostbyname(args.listen)
         else:
@@ -908,8 +911,10 @@ class Server:
             return []
 
     def print_info(self, msg: str) -> None:
+        t_now = datetime.now()
+        t_fmt = t_now.strftime("%H:%M:%S")
         if self.verbose:
-            print(msg)
+            print(f"[{t_fmt}] {msg}")
             sys.stdout.flush()
         if self.logger:
             self.logger.info(msg)
