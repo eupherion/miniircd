@@ -29,7 +29,7 @@ import sys
 import tempfile
 import time
 from argparse import ArgumentParser, Namespace
-from datetime import datetime
+from datetime import datetime, timezone
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Any, Collection, Dict, List, Optional, Sequence, Set
@@ -38,7 +38,7 @@ Socket = socket.socket
 
 VERSION = "2.3"
 
-SERVER_CREATED = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
+SERVER_CREATED = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
 
 class Channel:
@@ -743,7 +743,7 @@ class Client:
         if not self.server.channel_log_dir:
             return
         format_string = "[{}] * {} {}\n" if meta else "[{}] <{}> {}\n"
-        timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+        timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         channel_name = irc_lower(channel.name).decode(errors="ignore")
         logname = channel_name.replace("_", "__").replace("/", "_")
         logfile = self.server.channel_log_dir / f"{logname}.log"
