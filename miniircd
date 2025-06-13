@@ -912,7 +912,7 @@ class Server:
 
     def print_info(self, msg: str) -> None:
         t_now = datetime.now()
-        t_fmt = t_now.strftime("%H:%M:%S")
+        t_fmt = t_now.strftime("%Y-%m-%d %H:%M:%S")
         if self.verbose:
             print(f"[{t_fmt}] {msg}")
             sys.stdout.flush()
