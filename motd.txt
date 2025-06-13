@@ -3,7 +3,7 @@
 
 15•11 miniircd – fast and simple IRC server  
 15• SSL/TLS support: 03no  
-15• Admin: 07AdminName  
+15• Admin: 07const  
 15• Rules: respect others, no spam/flood/offenses  
 
 Create a channel: /join #channel 
