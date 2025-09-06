@@ -1,6 +1,19 @@
 miniircd -- A (very) simple Internet Relay Chat (IRC) server
 ============================================================
 
+## Table of Contents
+
+- [Description](#description)
+- [Features](#features)
+- [Limitations](#limitations)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Using `--chroot` and `--setuid`](#using---chroot-and---setuid)
+- [License](#license)
+- [Primary author](#primary-author)
+- [Contributors](#contributors)
+- [Changes in this fork](#changes-in-this-fork)
+
 Description
 -----------
 
@@ -70,7 +83,7 @@ If you do want to install miniircd, there are several options:
 
         python3 -m miniircd --help
 
-[miniircd PyPI project]: https://pypi.org/project/miniircd/
+[miniircd PyPI project]: https://pypi.org/project/miniircd/  
 
 
 Using `--chroot` and `--setuid`
@@ -162,4 +175,4 @@ This fork includes the following modifications from the original miniircd:
     `:<prefix> JOIN :<channel>`
     Previously it was sent as:
     `:<prefix> JOIN <channel>`
-    which breaks parsing for some IRC clients and bots. 
+    which breaks parsing for some IRC clients and bots.
