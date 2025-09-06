@@ -285,7 +285,7 @@ class Client:
             if for_join:
                 channel.add_member(self)
                 self.channels[irc_lower(channelname)] = channel
-                self.message_channel(channel, b"JOIN", channelname, True)
+                self.message_channel(channel, b"JOIN", b":" + channelname, True)
                 self.channel_log(channel, b"joined", meta=True)
                 if channel.topic:
                     self.reply(
