@@ -157,3 +157,9 @@ This fork includes the following modifications from the original miniircd:
 - Automatically inserts the server creation date into MOTD
 - Added `run.ircd.sh` script to run server with params
 - Added folder `chans` and `chlog` creation by startup script for channel state and channel logs 
+- Fixed JOIN message format to include colon before channel name. 
+    According to RFC 2812, JOIN must be sent as:
+    `:<prefix> JOIN :<channel>`
+    Previously it was sent as:
+    `:<prefix> JOIN <channel>`
+    which breaks parsing for some IRC clients and bots. 
